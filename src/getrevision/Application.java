@@ -25,8 +25,8 @@ public class Application {
         int wid = 765;
         int hei = 503;
         byte[] pattern = {
-                SIPUSH_OPCODE, (byte)((wid >> 8) & 0xff), (byte)(wid & 0xff),
-                SIPUSH_OPCODE, (byte)((hei >> 8) & 0xff), (byte)(hei & 0xff)
+                SIPUSH_OPCODE, (byte)(wid >> 8), (byte)(wid & 0xff),
+                SIPUSH_OPCODE, (byte)(hei >> 8), (byte)(hei & 0xff)
         };
 
         for(int i = 0; i < client.length - pattern.length; i++) {
