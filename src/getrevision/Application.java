@@ -1,7 +1,6 @@
 package getrevision;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 
 /**
@@ -14,6 +13,7 @@ public class Application {
         try {
             if (args.length < 1) {
                 System.out.println("Usage: getrevision myclass.class");
+                return;
             }
             System.out.println("Revision of pack: " + getRevision(Files.readAllBytes(new File(args[0]).toPath())));
         }catch (Exception ex){
