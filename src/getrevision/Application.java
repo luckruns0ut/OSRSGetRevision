@@ -40,7 +40,11 @@ public class Application {
             if(found) {
                 // revision should be at the end of the pattern
                 int idx = pattern.length + i;
-                return (client[idx] >> 8) + (client[idx+1]);
+                if(client[idx] == 0x11) { // if the revision is written as a short
+                    return (client[idx+1] >> 8) + (client[idx + 2] & 0xff);
+                } else if(client[idx] == 0x10){ // or if it is written as a byte
+                    return client[idx+1] & 0xff;
+                }
             }
         }
         return 0;
