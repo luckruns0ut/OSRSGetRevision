@@ -8,6 +8,7 @@ import java.nio.file.Files;
  */
 public class Application {
     private static final int SIPUSH_OPCODE = 0x11;
+    private static final int BIPUSH_OPCODE = 0x10;
 
     public static void main(String[] args) {
         try {
@@ -40,9 +41,9 @@ public class Application {
             if(found) {
                 // revision should be at the end of the pattern
                 int idx = pattern.length + i;
-                if(client[idx] == 0x11) { // if the revision is written as a short
+                if(client[idx] == SIPUSH_OPCODE) { // if the revision is written as a short
                     return (client[idx+1] >> 8) + (client[idx + 2] & 0xff);
-                } else if(client[idx] == 0x10){ // or if it is written as a byte
+                } else if(client[idx] == BIPUSH_OPCODE){ // or if it is written as a byte
                     return client[idx+1] & 0xff;
                 }
             }
